@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:title="승객 예고"
+        android:id="@+id/passengerNotice"
+        android:icon="@drawable/baseline_airline_seat_legroom_reduced_24"/>
+    <item android:title="목록"
+        android:id="@+id/list"
+        android:icon="@drawable/baseline_format_list_bulleted_24"/>
+    <item android:title="검색"
+        android:id="@+id/search"
+        android:icon="@drawable/baseline_search_24"/>
+
+</menu>
