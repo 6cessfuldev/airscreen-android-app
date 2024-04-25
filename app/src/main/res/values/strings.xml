@@ -2,4 +2,37 @@
     <string name="app_name">airscreen</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="reload_button_description">reload_button_description</string>
+
+    <string name="selected_terminal_item">Selected item:</string>
+    <string-array name="terminal">
+        <item>제1터미널</item>
+        <item>제2터미널</item>
+    </string-array>
+    <string name="selected_counter_item">Selected item:</string>
+    <string-array name="counter">
+        <item>A</item>
+        <item>B1</item>
+        <item>B2</item>
+        <item>C1</item>
+        <item>C2</item>
+        <item>D1</item>
+        <item>D2</item>
+        <item>E1</item>
+        <item>E2</item>
+        <item>F1</item>
+        <item>F2</item>
+        <item>G</item>
+        <item>H1</item>
+        <item>H2</item>
+        <item>J1</item>
+        <item>J2</item>
+        <item>K1</item>
+        <item>K2</item>
+        <item>L1</item>
+        <item>L2</item>
+        <item>M1</item>
+        <item>M2</item>
+        <item>N</item>
+    </string-array>
 </resources>

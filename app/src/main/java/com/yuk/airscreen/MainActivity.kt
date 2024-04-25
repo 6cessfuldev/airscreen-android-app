@@ -1,6 +1,8 @@
 package com.yuk.airscreen
 
 import android.os.Bundle
+import android.widget.ArrayAdapter
+import android.widget.Spinner
 import android.widget.TextView
 import androidx.appcompat.widget.Toolbar
 import androidx.appcompat.app.AppCompatActivity
@@ -15,7 +17,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        replaceFragment(PassengerNotice(), "승객 예고")
+        replaceFragment(List(), "항공편 목록")
 
         binding.bottomNavigationView.setOnItemSelectedListener {
             when(it.itemId){
