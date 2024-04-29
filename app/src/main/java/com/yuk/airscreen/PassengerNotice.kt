@@ -1,10 +1,22 @@
 package com.yuk.airscreen
 
+import android.content.ContentValues
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
+import com.yuk.airscreen.model.ApiResponse
+import com.yuk.airscreen.model.FlightInfoListResponse
+import com.yuk.airscreen.model.PassengerNoticeResponse
+import com.yuk.airscreen.service.apiclient.ApiClient
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -33,8 +45,38 @@ class PassengerNotice : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_passenger_notice, container, false)
+        var view = inflater.inflate(R.layout.fragment_passenger_notice, container, false)
+        dataFetch{(response) ->
+            if(isAdded) {
+                val strNum: String? = response.body.items.last().t1sumset2
+                val modifiedStrNum: Int? = strNum?.toDouble()?.toInt()
+                view.findViewById<TextView>(R.id.info_passenger_notice_tv).text = modifiedStrNum.toString()
+            }
+        }
+        return view
+    }
+
+    private fun dataFetch(onSuccess: (ApiResponse<PassengerNoticeResponse>) -> Unit) {
+        val apiService = ApiClient.create()
+        val call = apiService.fetchPassengerNoticeData(
+        )
+        call.enqueue(object : Callback<ApiResponse<PassengerNoticeResponse>> {
+            override fun onResponse(
+                call: Call<ApiResponse<PassengerNoticeResponse>>,
+                response: Response<ApiResponse<PassengerNoticeResponse>>
+            ) {
+                Log.d(ContentValues.TAG, "onResponse: hello")
+                if (response.isSuccessful && response.body() != null) {
+                    onSuccess(response.body()!!)
+                } else {
+                    Log.e(ContentValues.TAG, "API 호출 실패: " + response.message())
+                }
+            }
+
+            override fun onFailure(call: Call<ApiResponse<PassengerNoticeResponse>>, t: Throwable) {
+                Log.e(ContentValues.TAG, "API 호출 실패: ${t.message}")
+            }
+        })
     }
 
     companion object {

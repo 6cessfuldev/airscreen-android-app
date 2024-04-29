@@ -17,7 +17,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        replaceFragment(List(), "항공편 목록")
+        replaceFragment(PassengerNotice(), "승객 예고")
 
         binding.bottomNavigationView.setOnItemSelectedListener {
             when(it.itemId){

@@ -3,12 +3,14 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="reload_button_description">reload_button_description</string>
+    <string name="search_button_description">search_button_description</string>
 
     <string name="selected_terminal_item">Selected item:</string>
     <string-array name="terminal">
         <item>제1터미널</item>
         <item>제2터미널</item>
     </string-array>
+
     <string name="selected_counter_item">Selected item:</string>
     <string-array name="counter">
         <item>A</item>
