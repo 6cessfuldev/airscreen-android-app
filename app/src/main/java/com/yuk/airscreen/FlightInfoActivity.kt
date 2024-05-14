@@ -1,5 +1,7 @@
 package com.yuk.airscreen
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -9,6 +11,7 @@ import androidx.appcompat.widget.Toolbar
 import com.yuk.airscreen.databinding.ActivityFlightInfoBinding
 import com.yuk.airscreen.databinding.ActivityMainBinding
 import com.yuk.airscreen.model.DepartingFlightsInfo
+import com.yuk.airscreen.service.dataservice.DataService
 
 class FlightInfoActivity : AppCompatActivity() {
 
@@ -41,6 +44,17 @@ class FlightInfoActivity : AppCompatActivity() {
                 infoGateNumberTv.text = model.gatenumber
                 infoScheduleTimeTv.text = model.scheduleDateTime
                 infoTerminalIdTv.text = model.terminalid
+
+                airlineCallTv.setOnClickListener{
+                    val airline = model.airline
+                    val phoneNumber = DataService.airlineCallNum[airline]
+
+                    if (!phoneNumber.isNullOrEmpty()) {
+                        val intent = Intent(Intent.ACTION_DIAL)
+                        intent.data = Uri.parse("tel:$phoneNumber")
+                        startActivity(intent)
+                    }
+                }
             }
         }
     }
@@ -48,7 +62,6 @@ class FlightInfoActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             android.R.id.home -> {
-                // 뒤로가기 버튼 클릭 시 이전 액티비티로 이동하는 코드 작성
                 onBackPressed()
                 return true
             }
